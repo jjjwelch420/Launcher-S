@@ -60,7 +60,7 @@
     <button class="fancy-button" onclick="loadFile('Ports/SM64.xml')">Super Ah 64</button>
     <button class="fancy-button" onclick="loadFile('Ports/Drift-RU.xml')">Drift Hunters</button>
     <button class="fancy-button" onclick="loadFile('Ports/ETD.xml')">Earn To Die (W.I.P)</button>
-    <button class="fancy-button" onclick="loadFile('Ports/Riddle-School/Riddle-School.xml')">
+    <button class="fancy-button" onclick="loadFile('Ports/Riddle-School/Riddle-School.xml')">Riddle School W.I.P</button>
   </div>
   <script>
     const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
