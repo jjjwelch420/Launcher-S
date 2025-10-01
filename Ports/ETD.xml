@@ -60,7 +60,8 @@
       };
 
       document.getElementById("flash-container").appendChild(player);
-      player.load("https://cdn.jsdelivr.net/gh/jjjwelch420/Launcher@main/Ports/SWF/ETD.swf");
+      player.load("https://cdn.jsdelivr.net/gh/Inkin6779/EarnToDie@main/insert.swf
+");
     });
   </script>
 </body>
