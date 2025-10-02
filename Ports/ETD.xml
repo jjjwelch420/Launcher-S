@@ -60,8 +60,7 @@
       };
 
       document.getElementById("flash-container").appendChild(player);
-      player.load("https://cdn.jsdelivr.net/gh/Inkin6779/EarnToDie@main/insert.swf
-");
+      player.load("https://cdn.jsdelivr.net/gh/gamebackup/flasharchive/.swf/earntodie.swf");
     });
   </script>
 </body>
