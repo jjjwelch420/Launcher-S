@@ -60,7 +60,8 @@
       };
 
       document.getElementById("flash-container").appendChild(player);
-      player.load("https://cdn.jsdelivr.net/gh/gamebackup/flasharchive/.swf/earntodie.swf");
+      player.load("https://cdn.jsdelivr.net/gh/AmethystRUF/Jacksmith-.swf-file@main/jacksmith.swf
+");
     });
   </script>
 </body>
