@@ -47,6 +47,7 @@
 <body>
   <div class="button-container">
     <button class="fancy-button" onclick="loadFile('Ports/Riddle-School/1.xml')">Riddle School 1</button>
+  <button class="fancy-button" onclick="loadFile('Ports/Riddle-School/2.xml')">Riddle School 2</button>
   </div>
   <script>
     const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
