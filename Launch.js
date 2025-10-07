@@ -1,4 +1,4 @@
-<script>
+
     const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
 
     async function fetchHTMLFromXML(url) {
