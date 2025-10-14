@@ -51,6 +51,7 @@
     <button class="fancy-button" onclick="loadFile('Ports/ARC.xml')">ARC</button>
     <button class="fancy-button" onclick="loadFile('Ports/granny.xml')">Granny</button>
     <button class="fancy-button" onclick="loadFile('Ports/granny-2.xml')">Granny 2</button>
+    <button class="fancy-button" onclick="loadFile('Ports/granny-3.xml')">Granny 2</button>
     <button class="fancy-button" onclick="loadFile('Ports/racing.xml')">Racing</button>
     <button class="fancy-button" onclick="loadFile('Ports/runner.xml')">Sprinter Flash</button>
     <button class="fancy-button" onclick="loadFile('Ports/minecraft.xml')">Minecraft</button>
