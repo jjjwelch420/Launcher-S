@@ -46,83 +46,98 @@
 </head>
 <body>
   <div class="button-container">
-    <button class="fancy-button" onclick="loadFile('Ports/basket-random.xml')">Basket Random</button>
-    <button class="fancy-button" onclick="loadFile('Ports/stick-war.xml')">Stick War</button> 
-    <button class="fancy-button" onclick="loadFile('Ports/ARC.xml')">ARC</button>
-    <button class="fancy-button" onclick="loadFile('Ports/granny.xml')">Granny</button>
-    <button class="fancy-button" onclick="loadFile('Ports/granny-2.xml')">Granny 2</button>
-    <button class="fancy-button" onclick="loadFile('Ports/granny-3.xml')">Granny 2</button>
-    <button class="fancy-button" onclick="loadFile('Ports/racing.xml')">Racing</button>
-    <button class="fancy-button" onclick="loadFile('Ports/runner.xml')">Sprinter Flash</button>
-    <button class="fancy-button" onclick="loadFile('Ports/minecraft.xml')">Minecraft</button>
-    <button class="fancy-button" onclick="loadFile('Ports/gunspin.xml')">Gun Spin</button>
-    <button class="fancy-button" onclick="loadFile('Ports/OvO.xml')">OvO</button>
-    <button class="fancy-button" onclick="loadFile('Ports/Cookie.xml')">Cookie Clicker</button>
-    <button class="fancy-button" onclick="loadFile('Ports/SM64.xml')">Super Ah 64</button>
-    <button class="fancy-button" onclick="loadFile('Ports/Drift-RU.xml')">Drift Hunters</button>
-    <button class="fancy-button" onclick="loadFile('Ports/ETD.xml')">Earn To Die (W.I.P)</button>
-    <button class="fancy-button" onclick="loadFile('Ports/Riddle-School/Riddle-School.xml')">Riddle School W.I.P</button>
-    <button class="fancy-button" onclick="loadFile('Ports/Funny2.xml')">Funny Shooter</button>
+    <button class="fancy-button" onclick="fullscreenIframe('basket-random')">Basket Random</button>
+    <button class="fancy-button" onclick="fullscreenIframe('stick-war')">Stick War</button>
+    <button class="fancy-button" onclick="fullscreenIframe('ARC')">ARC</button>
+    <button class="fancy-button" onclick="fullscreenIframe('granny')">Granny</button>
+    <button class="fancy-button" onclick="fullscreenIframe('granny-2')">Granny 2</button>
+    <button class="fancy-button" onclick="fullscreenIframe('granny-3')">Granny 3</button>
+    <button class="fancy-button" onclick="fullscreenIframe('racing')">Racing</button>
+    <button class="fancy-button" onclick="fullscreenIframe('runner')">Sprinter Flash</button>
+    <button class="fancy-button" onclick="fullscreenIframe('minecraft')">Minecraft</button>
+    <button class="fancy-button" onclick="fullscreenIframe('gunspin')">Gun Spin</button>
+    <button class="fancy-button" onclick="fullscreenIframe('OvO')">OvO</button>
+    <button class="fancy-button" onclick="fullscreenIframe('Cookie')">Cookie Clicker</button>
+    <button class="fancy-button" onclick="fullscreenIframe('SM64')">Super Ah 64</button>
+    <button class="fancy-button" onclick="fullscreenIframe('Drift-RU')">Drift Hunters</button>
+    <button class="fancy-button" onclick="fullscreenIframe('ETD')">Earn To Die (W.I.P)</button>
+    <button class="fancy-button" onclick="fullscreenIframe('Riddle-School')">Riddle School W.I.P</button>
+    <button class="fancy-button" onclick="fullscreenIframe('Funny2')">Funny Shooter</button>
   </div>
+
+  <div id="iframe-container" style="display:none;"></div>
+
   <script>
-  const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
+    const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
+    const games = [
+      'basket-random', 'stick-war', 'ARC', 'granny', 'granny-2', 'granny-3',
+      'racing', 'runner', 'minecraft', 'gunspin', 'OvO', 'Cookie',
+      'SM64', 'Drift-RU', 'ETD', 'Riddle-School/Riddle-School', 'Funny2'
+    ];
 
-  async function fetchHTMLFromXML(url) {
-    try {
-      const response = await fetch(url);
-      const xmlText = await response.text();
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
-      const contentNode = xmlDoc.querySelector('Content');
-      return contentNode?.textContent || '<p>Error loading content</p>';
-    } catch (error) {
-      console.error('Failed to fetch XML:', error);
-      return '<p>Failed to load XML content</p>';
-    }
-  }
-
-  async function loadFile(relativePath) {
-    const fullURL = ROOT_URL + relativePath;
-    const htmlContent = await fetchHTMLFromXML(fullURL);
-
-    // Create iframe
-    const iframe = document.createElement('iframe');
-    iframe.style.position = 'fixed';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100vw';
-    iframe.style.height = '100vh';
-    iframe.style.border = 'none';
-    iframe.style.zIndex = '9999';
-    document.body.appendChild(iframe);
-
-    // Write content to iframe
-    const iframeDoc = iframe.contentWindow.document;
-    iframeDoc.open();
-    iframeDoc.write(htmlContent);
-    iframeDoc.close();
-
-    // Request fullscreen
-    if (iframe.requestFullscreen) {
-      iframe.requestFullscreen();
-    } else if (iframe.webkitRequestFullscreen) {
-      iframe.webkitRequestFullscreen();
-    } else if (iframe.mozRequestFullScreen) {
-      iframe.mozRequestFullScreen();
-    } else if (iframe.msRequestFullscreen) {
-      iframe.msRequestFullscreen();
-    }
-
-    // Remove iframe when exiting fullscreen
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement && iframe.parentNode) {
-        iframe.remove();
+    async function fetchHTMLFromXML(url) {
+      try {
+        const response = await fetch(url);
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+        const contentNode = xmlDoc.querySelector('Content');
+        return contentNode?.textContent || '<p>Error loading content</p>';
+      } catch (error) {
+        console.error('Failed to fetch XML:', error);
+        return '<p>Failed to load XML content</p>';
       }
-    });
-  }
-</script>
+    }
 
+    async function preloadIframes() {
+      const container = document.getElementById('iframe-container');
+      for (const game of games) {
+        const iframe = document.createElement('iframe');
+        iframe.id = game;
+        iframe.style.position = 'fixed';
+        iframe.style.top = '0';
+        iframe.style.left = '0';
+        iframe.style.width = '100vw';
+        iframe.style.height = '100vh';
+        iframe.style.border = 'none';
+        iframe.style.zIndex = '9999';
+        iframe.style.display = 'none';
+        container.appendChild(iframe);
+
+        const fullURL = ROOT_URL + 'Ports/' + game + '.xml';
+        const htmlContent = await fetchHTMLFromXML(fullURL);
+        const iframeDoc = iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(htmlContent);
+        iframeDoc.close();
+      }
+    }
+
+    function fullscreenIframe(id) {
+      const iframe = document.getElementById(id);
+      if (!iframe) return;
+      iframe.style.display = 'block';
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.webkitRequestFullscreen) {
+        iframe.webkitRequestFullscreen();
+      } else if (iframe.mozRequestFullScreen) {
+        iframe.mozRequestFullScreen();
+      } else if (iframe.msRequestFullscreen) {
+        iframe.msRequestFullscreen();
+      }
+
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+          iframe.style.display = 'none';
+        }
+      });
+    }
+
+    preloadIframes();
+  </script>
 </body>
+
 </html>
 
 ]]></Content>
