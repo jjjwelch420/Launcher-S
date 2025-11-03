@@ -46,78 +46,74 @@
 </head>
 <body>
   <div class="button-container" id="launcher"></div>
+<script>
+  const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
+  const games = [
+    { id: 'basket-random', label: 'Basket Random' },
+    { id: 'stick-war', label: 'Stick War' },
+    { id: 'ARC', label: 'ARC' },
+    { id: 'granny', label: 'Granny' },
+    { id: 'granny-2', label: 'Granny 2' },
+    { id: 'granny-3', label: 'Granny 3' },
+    { id: 'racing', label: 'Racing' },
+    { id: 'runner', label: 'Sprinter Flash' },
+    { id: 'minecraft', label: 'Minecraft' },
+    { id: 'gunspin', label: 'Gun Spin' },
+    { id: 'OvO', label: 'OvO' },
+    { id: 'Cookie', label: 'Cookie Clicker' },
+    { id: 'SM64', label: 'Super Ah 64' },
+    { id: 'Drift-RU', label: 'Drift Hunters' },
+    { id: 'ETD', label: 'Earn To Die (W.I.P)' },
+    { id: 'Riddle-School/Riddle-School', label: 'Riddle School W.I.P' },
+    { id: 'Funny2', label: 'Funny Shooter' }
+  ];
 
-  <script>
-    const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
-    const games = [
-      { id: 'basket-random', label: 'Basket Random' },
-      { id: 'stick-war', label: 'Stick War' },
-      { id: 'ARC', label: 'ARC' },
-      { id: 'granny', label: 'Granny' },
-      { id: 'granny-2', label: 'Granny 2' },
-      { id: 'granny-3', label: 'Granny 3' },
-      { id: 'racing', label: 'Racing' },
-      { id: 'runner', label: 'Sprinter Flash' },
-      { id: 'minecraft', label: 'Minecraft' },
-      { id: 'gunspin', label: 'Gun Spin' },
-      { id: 'OvO', label: 'OvO' },
-      { id: 'Cookie', label: 'Cookie Clicker' },
-      { id: 'SM64', label: 'Super Ah 64' },
-      { id: 'Drift-RU', label: 'Drift Hunters' },
-      { id: 'ETD', label: 'Earn To Die (W.I.P)' },
-      { id: 'Riddle-School/Riddle-School', label: 'Riddle School W.I.P' },
-      { id: 'Funny2', label: 'Funny Shooter' }
-    ];
+  function createLauncherUI() {
+    const container = document.getElementById('launcher');
+    games.forEach(game => {
+      const wrapper = document.createElement('div');
+      wrapper.style.display = 'flex';
+      wrapper.style.alignItems = 'center';
+      wrapper.style.gap = '8px';
 
-    function createLauncherUI() {
-      const container = document.getElementById('launcher');
-      games.forEach(game => {
-        const wrapper = document.createElement('div');
-        wrapper.style.display = 'flex';
-        wrapper.style.alignItems = 'center';
-        wrapper.style.gap = '8px';
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = `check-${game.id}`;
+      checkbox.onchange = () => toggleGameIframe(game.id, checkbox.checked);
 
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = `check-${game.id}`;
-        checkbox.checked = false;
+      const button = document.createElement('button');
+      button.className = 'fancy-button';
+      button.textContent = game.label;
+      button.onclick = () => fullscreenGame(game.id);
 
-        const button = document.createElement('button');
-        button.className = 'fancy-button';
-        button.textContent = game.label;
-        button.onclick = () => launchGame(game.id);
+      wrapper.appendChild(checkbox);
+      wrapper.appendChild(button);
+      container.appendChild(wrapper);
+    });
+  }
 
-        wrapper.appendChild(checkbox);
-        wrapper.appendChild(button);
-        container.appendChild(wrapper);
-      });
+  async function fetchHTMLFromXML(url) {
+    try {
+      const response = await fetch(url);
+      const xmlText = await response.text();
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+      const contentNode = xmlDoc.querySelector('Content');
+      return contentNode?.textContent || '<p>Error loading content</p>';
+    } catch (error) {
+      console.error('Failed to fetch XML:', error);
+      return '<p>Failed to load XML content</p>';
     }
+  }
 
-    async function fetchHTMLFromXML(url) {
-      try {
-        const response = await fetch(url);
-        const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
-        const contentNode = xmlDoc.querySelector('Content');
-        return contentNode?.textContent || '<p>Error loading content</p>';
-      } catch (error) {
-        console.error('Failed to fetch XML:', error);
-        return '<p>Failed to load XML content</p>';
-      }
-    }
-
-    async function launchGame(gameId) {
-      const checkbox = document.getElementById(`check-${gameId}`);
-      if (!checkbox.checked) {
-        alert('Enable the checkbox to launch this game.');
-        return;
-      }
-
+  async function toggleGameIframe(gameId, shouldEnable) {
+    const existing = document.getElementById(`iframe-${gameId}`);
+    if (shouldEnable && !existing) {
       const fullURL = ROOT_URL + 'Ports/' + gameId + '.xml';
       const htmlContent = await fetchHTMLFromXML(fullURL);
 
       const iframe = document.createElement('iframe');
+      iframe.id = `iframe-${gameId}`;
       iframe.style.position = 'fixed';
       iframe.style.top = '0';
       iframe.style.left = '0';
@@ -125,32 +121,46 @@
       iframe.style.height = '100vh';
       iframe.style.border = 'none';
       iframe.style.zIndex = '9999';
+      iframe.style.display = 'none';
       document.body.appendChild(iframe);
 
       const iframeDoc = iframe.contentWindow.document;
       iframeDoc.open();
       iframeDoc.write(htmlContent);
       iframeDoc.close();
+    } else if (!shouldEnable && existing) {
+      existing.remove();
+    }
+  }
 
-      if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-      } else if (iframe.webkitRequestFullscreen) {
-        iframe.webkitRequestFullscreen();
-      } else if (iframe.mozRequestFullScreen) {
-        iframe.mozRequestFullScreen();
-      } else if (iframe.msRequestFullscreen) {
-        iframe.msRequestFullscreen();
-      }
-
-      document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement && iframe.parentNode) {
-          iframe.remove();
-        }
-      });
+  function fullscreenGame(gameId) {
+    const iframe = document.getElementById(`iframe-${gameId}`);
+    if (!iframe) {
+      alert('Enable the checkbox first to load this game.');
+      return;
     }
 
-    createLauncherUI();
-  </script>
+    iframe.style.display = 'block';
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.webkitRequestFullscreen) {
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.mozRequestFullScreen) {
+      iframe.mozRequestFullScreen();
+    } else if (iframe.msRequestFullscreen) {
+      iframe.msRequestFullscreen();
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        iframe.style.display = 'none';
+      }
+    });
+  }
+
+  createLauncherUI();
+</script>
+
 </body>
 
 </html>
