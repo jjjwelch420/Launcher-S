@@ -45,35 +45,53 @@
   </style>
 </head>
 <body>
-  <div class="button-container">
-    <button class="fancy-button" onclick="fullscreenIframe('basket-random')">Basket Random</button>
-    <button class="fancy-button" onclick="fullscreenIframe('stick-war')">Stick War</button>
-    <button class="fancy-button" onclick="fullscreenIframe('ARC')">ARC</button>
-    <button class="fancy-button" onclick="fullscreenIframe('granny')">Granny</button>
-    <button class="fancy-button" onclick="fullscreenIframe('granny-2')">Granny 2</button>
-    <button class="fancy-button" onclick="fullscreenIframe('granny-3')">Granny 3</button>
-    <button class="fancy-button" onclick="fullscreenIframe('racing')">Racing</button>
-    <button class="fancy-button" onclick="fullscreenIframe('runner')">Sprinter Flash</button>
-    <button class="fancy-button" onclick="fullscreenIframe('minecraft')">Minecraft</button>
-    <button class="fancy-button" onclick="fullscreenIframe('gunspin')">Gun Spin</button>
-    <button class="fancy-button" onclick="fullscreenIframe('OvO')">OvO</button>
-    <button class="fancy-button" onclick="fullscreenIframe('Cookie')">Cookie Clicker</button>
-    <button class="fancy-button" onclick="fullscreenIframe('SM64')">Super Ah 64</button>
-    <button class="fancy-button" onclick="fullscreenIframe('Drift-RU')">Drift Hunters</button>
-    <button class="fancy-button" onclick="fullscreenIframe('ETD')">Earn To Die (W.I.P)</button>
-    <button class="fancy-button" onclick="fullscreenIframe('Riddle-School')">Riddle School W.I.P</button>
-    <button class="fancy-button" onclick="fullscreenIframe('Funny2')">Funny Shooter</button>
-  </div>
-
-  <div id="iframe-container" style="display:none;"></div>
+  <div class="button-container" id="launcher"></div>
 
   <script>
     const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
     const games = [
-      'basket-random', 'stick-war', 'ARC', 'granny', 'granny-2', 'granny-3',
-      'racing', 'runner', 'minecraft', 'gunspin', 'OvO', 'Cookie',
-      'SM64', 'Drift-RU', 'ETD', 'Riddle-School/Riddle-School', 'Funny2'
+      { id: 'basket-random', label: 'Basket Random' },
+      { id: 'stick-war', label: 'Stick War' },
+      { id: 'ARC', label: 'ARC' },
+      { id: 'granny', label: 'Granny' },
+      { id: 'granny-2', label: 'Granny 2' },
+      { id: 'granny-3', label: 'Granny 3' },
+      { id: 'racing', label: 'Racing' },
+      { id: 'runner', label: 'Sprinter Flash' },
+      { id: 'minecraft', label: 'Minecraft' },
+      { id: 'gunspin', label: 'Gun Spin' },
+      { id: 'OvO', label: 'OvO' },
+      { id: 'Cookie', label: 'Cookie Clicker' },
+      { id: 'SM64', label: 'Super Ah 64' },
+      { id: 'Drift-RU', label: 'Drift Hunters' },
+      { id: 'ETD', label: 'Earn To Die (W.I.P)' },
+      { id: 'Riddle-School/Riddle-School', label: 'Riddle School W.I.P' },
+      { id: 'Funny2', label: 'Funny Shooter' }
     ];
+
+    function createLauncherUI() {
+      const container = document.getElementById('launcher');
+      games.forEach(game => {
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.gap = '8px';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `check-${game.id}`;
+        checkbox.checked = false;
+
+        const button = document.createElement('button');
+        button.className = 'fancy-button';
+        button.textContent = game.label;
+        button.onclick = () => launchGame(game.id);
+
+        wrapper.appendChild(checkbox);
+        wrapper.appendChild(button);
+        container.appendChild(wrapper);
+      });
+    }
 
     async function fetchHTMLFromXML(url) {
       try {
@@ -89,34 +107,31 @@
       }
     }
 
-    async function preloadIframes() {
-      const container = document.getElementById('iframe-container');
-      for (const game of games) {
-        const iframe = document.createElement('iframe');
-        iframe.id = game;
-        iframe.style.position = 'fixed';
-        iframe.style.top = '0';
-        iframe.style.left = '0';
-        iframe.style.width = '100vw';
-        iframe.style.height = '100vh';
-        iframe.style.border = 'none';
-        iframe.style.zIndex = '9999';
-        iframe.style.display = 'none';
-        container.appendChild(iframe);
-
-        const fullURL = ROOT_URL + 'Ports/' + game + '.xml';
-        const htmlContent = await fetchHTMLFromXML(fullURL);
-        const iframeDoc = iframe.contentWindow.document;
-        iframeDoc.open();
-        iframeDoc.write(htmlContent);
-        iframeDoc.close();
+    async function launchGame(gameId) {
+      const checkbox = document.getElementById(`check-${gameId}`);
+      if (!checkbox.checked) {
+        alert('Enable the checkbox to launch this game.');
+        return;
       }
-    }
 
-    function fullscreenIframe(id) {
-      const iframe = document.getElementById(id);
-      if (!iframe) return;
-      iframe.style.display = 'block';
+      const fullURL = ROOT_URL + 'Ports/' + gameId + '.xml';
+      const htmlContent = await fetchHTMLFromXML(fullURL);
+
+      const iframe = document.createElement('iframe');
+      iframe.style.position = 'fixed';
+      iframe.style.top = '0';
+      iframe.style.left = '0';
+      iframe.style.width = '100vw';
+      iframe.style.height = '100vh';
+      iframe.style.border = 'none';
+      iframe.style.zIndex = '9999';
+      document.body.appendChild(iframe);
+
+      const iframeDoc = iframe.contentWindow.document;
+      iframeDoc.open();
+      iframeDoc.write(htmlContent);
+      iframeDoc.close();
+
       if (iframe.requestFullscreen) {
         iframe.requestFullscreen();
       } else if (iframe.webkitRequestFullscreen) {
@@ -128,13 +143,13 @@
       }
 
       document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
-          iframe.style.display = 'none';
+        if (!document.fullscreenElement && iframe.parentNode) {
+          iframe.remove();
         }
       });
     }
 
-    preloadIframes();
+    createLauncherUI();
   </script>
 </body>
 
