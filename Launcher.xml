@@ -65,38 +65,63 @@
     <button class="fancy-button" onclick="loadFile('Ports/Funny2.xml')">Funny Shooter</button>
   </div>
   <script>
-    const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
+  const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
 
-    async function fetchHTMLFromXML(url) {
-      try {
-        const response = await fetch(url);
-        const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
-        const contentNode = xmlDoc.querySelector('Content');
-        return contentNode?.textContent || '<p>Error loading content</p>';
-      } catch (error) {
-        console.error('Failed to fetch XML:', error);
-        return '<p>Failed to load XML content</p>';
-      }
+  async function fetchHTMLFromXML(url) {
+    try {
+      const response = await fetch(url);
+      const xmlText = await response.text();
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+      const contentNode = xmlDoc.querySelector('Content');
+      return contentNode?.textContent || '<p>Error loading content</p>';
+    } catch (error) {
+      console.error('Failed to fetch XML:', error);
+      return '<p>Failed to load XML content</p>';
+    }
+  }
+
+  async function loadFile(relativePath) {
+    const fullURL = ROOT_URL + relativePath;
+    const htmlContent = await fetchHTMLFromXML(fullURL);
+
+    // Create iframe
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100vw';
+    iframe.style.height = '100vh';
+    iframe.style.border = 'none';
+    iframe.style.zIndex = '9999';
+    document.body.appendChild(iframe);
+
+    // Write content to iframe
+    const iframeDoc = iframe.contentWindow.document;
+    iframeDoc.open();
+    iframeDoc.write(htmlContent);
+    iframeDoc.close();
+
+    // Request fullscreen
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.webkitRequestFullscreen) {
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.mozRequestFullScreen) {
+      iframe.mozRequestFullScreen();
+    } else if (iframe.msRequestFullscreen) {
+      iframe.msRequestFullscreen();
     }
 
-    async function loadFile(relativePath) {
-      const fullURL = ROOT_URL + relativePath;
-      const htmlContent = await fetchHTMLFromXML(fullURL);
-      const newTab = window.open('about:blank', '_blank');
-      if (newTab) {
-        newTab.document.open();
-        newTab.document.write(htmlContent);
-        newTab.document.close();
-      } else {
-        alert('Popup blocked. Please allow popups for this site.');
+    // Remove iframe when exiting fullscreen
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement && iframe.parentNode) {
+        iframe.remove();
       }
-    }
+    });
+  }
+</script>
 
-    // Example usage:
-    
-  </script>
 </body>
 </html>
 
