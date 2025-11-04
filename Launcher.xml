@@ -153,30 +153,27 @@
       { id: 'riddle-2', label: 'Riddle School 2' }
     ];
 
-    function createLauncherUI(filteredGames = games) {
-  const container = document.getElementById('launcher');
-  container.innerHTML = ''; // Clear previous content
+    function createLauncherUI() {
+      const container = document.getElementById('launcher');
+      games.forEach(game => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'game-wrapper';
 
-  filteredGames.forEach(game => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'game-wrapper';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `check-${game.id}`;
+        checkbox.onchange = () => toggleGameIframe(game.id, checkbox.checked);
 
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = `check-${game.id}`;
-    checkbox.onchange = () => toggleGameIframe(game.id, checkbox.checked);
+        const button = document.createElement('button');
+        button.className = 'fancy-button';
+        button.textContent = game.label;
+        button.onclick = () => fullscreenGame(game.id);
 
-    const button = document.createElement('button');
-    button.className = 'fancy-button';
-    button.textContent = game.label;
-    button.onclick = () => fullscreenGame(game.id);
-
-    wrapper.appendChild(checkbox);
-    wrapper.appendChild(button);
-    container.appendChild(wrapper);
-  });
-}
-
+        wrapper.appendChild(checkbox);
+        wrapper.appendChild(button);
+        container.appendChild(wrapper);
+      });
+    }
 function filterGames(query) {
   const filtered = games.filter(game =>
     game.label.toLowerCase().includes(query.toLowerCase())
