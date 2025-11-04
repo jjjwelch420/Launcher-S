@@ -110,6 +110,7 @@
   </style>
 </head>
 <body>
+  <input type="text" id="search-bar" placeholder="Search games..." style="width: 100%; padding: 10px; margin-bottom: 20px; font-size: 16px; border-radius: 6px; border: 1px solid #8a85ff; background-color: #2b2b2b; color: #f0f0f0;">
   <div class="button-container" id="launcher"></div>
 
   <!-- Help Button -->
@@ -153,26 +154,41 @@
       { id: 'riddle-2', label: 'Riddle School 2' }
     ];
 
-    function createLauncherUI() {
-      const container = document.getElementById('launcher');
-      games.forEach(game => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'game-wrapper';
+    function createLauncherUI(filteredGames = games) {
+  const container = document.getElementById('launcher');
+  container.innerHTML = ''; // Clear previous content
 
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = `check-${game.id}`;
-        checkbox.onchange = () => toggleGameIframe(game.id, checkbox.checked);
+  filteredGames.forEach(game => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'game-wrapper';
 
-        const button = document.createElement('button');
-        button.className = 'fancy-button';
-        button.textContent = game.label;
-        button.onclick = () => fullscreenGame(game.id);
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `check-${game.id}`;
+    checkbox.onchange = () => toggleGameIframe(game.id, checkbox.checked);
 
-        wrapper.appendChild(checkbox);
-        wrapper.appendChild(button);
-        container.appendChild(wrapper);
-      });
+    const button = document.createElement('button');
+    button.className = 'fancy-button';
+    button.textContent = game.label;
+    button.onclick = () => fullscreenGame(game.id);
+
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(button);
+    container.appendChild(wrapper);
+  });
+}
+
+function filterGames(query) {
+  const filtered = games.filter(game =>
+    game.label.toLowerCase().includes(query.toLowerCase())
+  );
+  createLauncherUI(filtered);
+}
+
+document.getElementById('search-bar').addEventListener('input', (e) => {
+  filterGames(e.target.value);
+});
+
     }
 
     async function fetchHTMLFromXML(url) {
