@@ -4,8 +4,6 @@
 <Content type="html"><![CDATA[
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Launcher</title>
@@ -110,7 +108,7 @@
   </style>
 </head>
 <body>
-    <div class="button-container" id="launcher"></div>
+  <div class="button-container" id="launcher"></div>
 
   <!-- Help Button -->
   <button id="help-button">?</button>
@@ -173,18 +171,6 @@
         wrapper.appendChild(button);
         container.appendChild(wrapper);
       });
-    }
-function filterGames(query) {
-  const filtered = games.filter(game =>
-    game.label.toLowerCase().includes(query.toLowerCase())
-  );
-  createLauncherUI(filtered);
-}
-
-document.getElementById('search-bar').addEventListener('input', (e) => {
-  filterGames(e.target.value);
-});
-
     }
 
     async function fetchHTMLFromXML(url) {
@@ -270,7 +256,5 @@ document.getElementById('search-bar').addEventListener('input', (e) => {
   </script>
 </body>
 </html>
-
-
 ]]></Content>
 </Module>
