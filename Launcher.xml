@@ -147,7 +147,7 @@
       { id: 'Drift-RU', label: 'Drift Hunters' },
       { id: 'ETD', label: 'Earn To Die (W.I.P)' },
       { id: 'Riddle-School/Riddle-School', label: 'Riddle School W.I.P' },
-      { id: 'Funny2', label: 'Funny Shooter' }
+      { id: 'Funny2', label: 'Funny Shooter' },
       { id: 'snow-riders', label: 'Snow Riders' }
     ];
 
