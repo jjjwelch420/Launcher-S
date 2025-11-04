@@ -148,7 +148,9 @@
       { id: 'ETD', label: 'Earn To Die (W.I.P)' },
       { id: 'Riddle-School/Riddle-School', label: 'Riddle School W.I.P' },
       { id: 'Funny2', label: 'Funny Shooter' },
-      { id: 'snow-riders', label: 'Snow Riders' }
+      { id: 'snow-riders', label: 'Snow Riders' },
+      { id: 'riddle-1', label: 'Riddle School 1' },
+      { id: 'riddle-2', label: 'Riddle School 2' }
     ];
 
     function createLauncherUI() {
