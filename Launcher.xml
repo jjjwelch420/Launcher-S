@@ -205,16 +205,18 @@
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
 
-    iframe.onload = () => {
+    // Wait a tick to ensure iframe is in the DOM
+    setTimeout(() => {
       const doc = iframe.contentDocument || iframe.contentWindow.document;
       doc.open();
       doc.write(htmlContent);
       doc.close();
-    };
+    }, 0);
   } else if (!shouldEnable && existing) {
     existing.remove();
   }
 }
+
 
 
 
