@@ -148,7 +148,8 @@
       { id: 'Funny2', label: 'Funny Shooter' },
       { id: 'snow-riders', label: 'Snow Riders' },
       { id: 'riddle-1', label: 'Riddle School 1' },
-      { id: 'riddle-2', label: 'Riddle School 2' }
+      { id: 'riddle-2', label: 'Riddle School 2' },
+      { id: 'red-vs-blue', label: 'Red vs Blue' }
     ];
 
     function createLauncherUI() {
