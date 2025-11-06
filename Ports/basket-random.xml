@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="Google.com" />
+<ModulePrefs title="Cookie Clicker" />
 <Content type="html"><![CDATA[
-
-
 <!DOCTYPE html>
 <html>
 
@@ -45,7 +43,5 @@ window.addEventListener("keydown", function(e) {
 </body>
 
 </html>
-
-
 ]]></Content>
 </Module>
