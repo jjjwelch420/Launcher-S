@@ -129,13 +129,13 @@
   <script>
     const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
     const games = [
-      { id: 'basket-random', label: 'Basket Random' },
+      { id: 'racing', label: 'Racing' },
       { id: 'stick-war', label: 'Stick War' },
       { id: 'ARC', label: 'ARC' },
       { id: 'granny', label: 'Granny' },
       { id: 'granny-2', label: 'Granny 2' },
       { id: 'granny-3', label: 'Granny 3' },
-      { id: 'racing', label: 'Racing' },
+      { id: 'basket-random', label: 'Basket Random' },
       { id: 'runner', label: 'Sprinter Flash' },
       { id: 'minecraft', label: 'Minecraft' },
       { id: 'gunspin', label: 'Gun Spin' },
