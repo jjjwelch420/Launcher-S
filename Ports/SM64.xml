@@ -60,13 +60,14 @@
       };
 
       document.getElementById("flash-container").appendChild(player);
-      player.load("https://cdn.jsdelivr.net/gh/jjjwelch420/Launcher@main/Ports/SWF/Super_Mario_63_2010%20(1).swf");
+      player.load("https://jjjwelch420.github.io/Launcher/Ports/SWF/Super_Mario_63_2010%20(1).swf");
     });
   </script>
 </body>
 </html>
 ]]></Content>
 </Module>
+
 
 
 
