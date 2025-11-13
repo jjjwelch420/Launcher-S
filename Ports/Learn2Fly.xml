@@ -60,7 +60,7 @@
       };
 
       document.getElementById("flash-container").appendChild(player);
-      player.load("https://jjjwelch420.github.io/Launcher/Ports/SWF/Learn2Fly.swf"); 
+      player.load("https://www.coolmath-games.com/gameFrame?u=sites/cmatgame/files/games/learn2fly_coolmathcurse.swf&f=learn2fly_coolmathcurse.swf"); 
     });
   </script>
 </body>
