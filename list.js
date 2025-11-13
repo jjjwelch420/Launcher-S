@@ -8,7 +8,7 @@ const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
       { id: 'gunspin', label: 'Gun Spin' },
       { id: 'OvO', label: 'OvO' },
       { id: 'Cookie', label: 'Cookie Clicker' },
-      { id: 'SM64', label: 'Super Ah 64' },
+      { id: 'SM64', label: 'Super Ah 64' }, 
       { id: 'Drift-RU', label: 'Drift Hunters' },
       { id: 'Funny2', label: 'Funny Shooter' },
       { id: 'snow-riders', label: 'Snow Riders' },
