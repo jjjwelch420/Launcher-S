@@ -29,13 +29,6 @@ window.addEventListener("keydown", function(e) {
 <body>
 <div id="fb-root"></div>
     <script src="https://cdn.jsdelivr.net/gh/rz-6-5-z/bsrandm@main/box2d.wasm.js"></script>
-    <noscript>
-        <div id="notSupportedWrap">
-            <h2 id="notSupportedTitle">This content requires JavaScript</h2>
-            <p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p>
-            <p class="notSupportedMessage">This content was made with Construct 3 - a <a href="https://www.construct.net/en">free game maker</a>.</p>
-        </div>
-    </noscript>
     <script src="https://cdn.jsdelivr.net/gh/rz-6-5-z/bsrandm@main/scripts/supportcheck.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/rz-6-5-z/bsrandm@main/scripts/offlineclient.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/rz-6-5-z/bsrandm@main/scripts/main.js"></script>
