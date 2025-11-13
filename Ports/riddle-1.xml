@@ -50,7 +50,7 @@
       player.config = {
         autoplay: "on",
   letterbox: "on",
-  backgroundColor: "#000000",
+  backgroundColor: "#000000", 
   scale: "showAll",
   quality: "high",
   preferredRenderer: "webgl",
