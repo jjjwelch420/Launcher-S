@@ -4,7 +4,23 @@
 <Content type="html"><![CDATA[
 <!DOCTYPE html>
 <html>
+<script>
+// Override alert, confirm, and prompt
+window.alert = function(msg) {
+  console.log("Alert blocked:", msg);
+};
 
+window.confirm = function(msg) {
+  console.log("Confirm blocked:", msg);
+  return true; // always "OK"
+};
+
+window.prompt = function(msg, defaultText) {
+  console.log("Prompt blocked:", msg);
+  return defaultText; // return default value
+};
+
+</script>
 <head>
 <meta charset="UTF-8"> 
 <title>google.com</title>
