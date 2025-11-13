@@ -1,69 +1,45 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Module>
-<ModulePrefs title="Google.com" />
-<Content type="html"><![CDATA[
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Super Mario 63</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    #flash-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: black;
-    }
-
-    ruffle-player {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-<body>
-  <div id="flash-container"></div>
-
-  <!-- Load Ruffle from official CDN -->
+  <meta charset="UTF-8">
+  <title>Learn to Fly with Ruffle</title>
   <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
   <script>
     window.RufflePlayer = window.RufflePlayer || {};
     window.addEventListener("DOMContentLoaded", () => {
       const ruffle = window.RufflePlayer.newest();
+      const container = document.getElementById("flash-container");
       const player = ruffle.createPlayer();
-
-      // Performance and autoplay settings
-      player.config = {
-        autoplay: "on",
-  letterbox: "on",
-  backgroundColor: "#000000", 
-  scale: "showAll",
-  quality: "high",
-  preferredRenderer: "webgl",
-  wmode: "direct",
-  reduceMotion: false, // ← this is the key change
-  unmuteOverlay: false
-      };
-
-      document.getElementById("flash-container").appendChild(player);
-      player.load("https://www.coolmath-games.com/gameFrame?u=sites/cmatgame/files/games/learn2fly_coolmathcurse.swf&f=learn2fly_coolmathcurse.swf"); 
+      container.appendChild(player);
+      player.load("https://jjjwelch420.github.io/Launcher/Ports/SWF/Learn2Fly.swf");
     });
   </script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    #flash-container {
+      height: 100vh;
+      width: 100vh;
+      max-width: 100vw;
+      max-height: 100vw;
+    }
+    ruffle-player {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="flash-container"></div>
 </body>
 </html>
-]]></Content>
-</Module>
