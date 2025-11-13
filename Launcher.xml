@@ -125,7 +125,7 @@
 <p>💡 Pro tip: Only check the games you’re actually playing. Don’t fry your Chromebook, bro.</p>
 
   </div>
-  <script src="https://jjjwelch420.github.io/Launcher/list.js"><>
+  <script src="https://jjjwelch420.github.io/Launcher/list.js"></script>
   <script>
     function createLauncherUI() {
       const container = document.getElementById('launcher');
