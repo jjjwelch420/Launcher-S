@@ -5,36 +5,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AwayFL Fullscreen Example</title>
-    <script src="https://cdn.jsdelivr.net/gh/awayfl/awayfl-embed/dist/embed.js"></script>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        #container {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Learn to Fly 2</title>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    #flash-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    ruffle-player {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <div id="container"></div>
+  <div id="flash-container"></div>
 
-    <script>
-        window.AWAY_EMBED_CFG = {
-        showConsole: false,   // hides the debug console
-        showToolbar: false,   // hides the toolbar
-        showStats: false      // hides FPS/performance stats
-    };
-        // Use 100% width and height to fill the screen
-        swfObject.embedSWF('https://jjjwelch420.github.io/Launcher/Ports/SWF/riddle-1.swf', 'container', '100%', '100%');
-    </script>
+  <script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.addEventListener("DOMContentLoaded", () => {
+      const ruffle = window.RufflePlayer.newest();
+      const container = document.getElementById("flash-container");
+      const player = ruffle.createPlayer();
+      container.appendChild(player);
+      player.load("https://jjjwelch420.github.io/Launcher/Ports/SWF/Riddle-1.swf");
+    });
+  </script>
 </body>
 </html>
 ]]></Content>
