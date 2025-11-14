@@ -27,7 +27,11 @@
     <div id="container"></div>
 
     <script>
-        window.AWAY_EMBED_CFG = {};
+        window.AWAY_EMBED_CFG = {
+        showConsole: false,   // hides the debug console
+        showToolbar: false,   // hides the toolbar
+        showStats: false      // hides FPS/performance stats
+    };
         // Use 100% width and height to fill the screen
         swfObject.embedSWF('https://jjjwelch420.github.io/Launcher/Ports/SWF/Learn2Fly.swf', 'container', '100%', '100%');
     </script>
