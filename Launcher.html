@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Play Ported Games</title>
+  <style>
+    html, body { 
+      margin: 0;
+      padding: 0; 
+      height: 100%;
+      background: #000;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="moduleFrame"></iframe>
+
+  <script>
+    async function loadFile(url) {
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(text, 'application/xml');
+
+        const content = xmlDoc.querySelector('Content')?.textContent || '';
+
+        const iframe = document.getElementById('moduleFrame');
+        const iframeDoc = iframe.contentWindow.document;
+
+        iframeDoc.open();
+        iframeDoc.write(content);
+        iframeDoc.close();
+      } catch (e) {
+        console.error('Error loading XML content:', e);
+      }
+    }
+
+    // Load content on page load
+    window.onload = () => {
+      loadFile('https://jjjwelch420.github.io/Launcher/Launcher.xml');
+    };
+  </script>
+</body>
+</html>
