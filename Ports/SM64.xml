@@ -29,7 +29,7 @@
     <script>
         window.AWAY_EMBED_CFG = {};
         // Use 100% width and height to fill the screen
-        swfObject.embedSWF('https://jjjwelch420.github.io/Launcher/Ports?SWF/Sm64.swf', 'container', '100%', '100%');
+        swfObject.embedSWF('https://jjjwelch420.github.io/Launcher/Ports/SWF/SM64.swf', 'container', '100%', '100%');
     </script>
 </body>
 </html>
