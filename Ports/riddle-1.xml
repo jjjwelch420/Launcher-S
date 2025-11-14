@@ -34,7 +34,7 @@
   </style>
 </head>
 <body>
-  <div id="flash-container"></div>
+  <div id="flash-container"></div> 
 
   <script>
     window.RufflePlayer = window.RufflePlayer || {};
