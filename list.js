@@ -21,6 +21,7 @@ const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
       { id: 'Riddle-T2', label: 'Riddle School Transfer 2' },
       { id: 'LearnToFly', label: 'Learn to Fly' },
       { id: 'Learn2Fly', label: 'Learn to Fly 2' },
+      { id: 'LearnToFly3', label: 'Learn to Fly 3' },
       { id: 'Red-vs-Blue', label: 'Red vs Blue' },
       { id: 'JackSmith', label: 'JackSmith' },
       { id: 'BasketballLegends', label: 'Basketball Legends' } 
