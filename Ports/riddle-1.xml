@@ -33,7 +33,7 @@
         showStats: false      // hides FPS/performance stats
     };
         // Use 100% width and height to fill the screen
-        swfObject.embedSWF('https://jjjwelch420.github.io/Launcher/Ports/SWF/riddle-1swf', 'container', '100%', '100%');
+        swfObject.embedSWF('https://jjjwelch420.github.io/Launcher/Ports/SWF/riddle-1.swf', 'container', '100%', '100%');
     </script>
 </body>
 </html>
