@@ -91,18 +91,4 @@ function createLauncherUI() {
         }
       });
     }
-
-    // Help modal logic
-    const helpBtn = document.getElementById('help-button');
-    const helpModal = document.getElementById('help-modal');
-    const closeHelp = document.getElementById('close-help');
-
-    helpBtn.onclick = () => {
-      helpModal.style.display = 'block';
-    };
-
-    closeHelp.onclick = () => {
-      helpModal.style.display = 'none';
-    };
-
     createLauncherUI();
