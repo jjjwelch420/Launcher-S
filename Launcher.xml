@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Launcher</title>
-  <style src="https://jjjwelch420.github.io/Launcher/Launcher.xml.css"></style>
+  <link rel="stylesheet" href="https://jjjwelch420.github.io/Launcher/Launcher.xml.css">
 </head>
 <body>
   <div class="button-container" id="launcher"></div>
