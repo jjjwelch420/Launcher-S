@@ -1,4 +1,4 @@
-const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
+const ROOT_URL = 'https://jjjwelch420.github.io/Launcher-S/';
     const games = [
       { id: 'Racing', label: 'Racing' },
       { id: 'StickWar', label: 'Stick War' },
