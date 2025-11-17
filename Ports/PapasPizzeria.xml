@@ -43,7 +43,7 @@
       const container = document.getElementById("flash-container");
       const player = ruffle.createPlayer();
       container.appendChild(player);
-      player.load("https://jjjwelch420.github.io/Launcher/Ports/SWF/Papas/PapasPizzeria.swf");
+      player.load("https://jjjwelch420.github.io/Launcher-S/Ports/SWF/Papas/PapasPizzeria.swf");
     });
   </script>
 </body>
