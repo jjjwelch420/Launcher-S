@@ -22,6 +22,10 @@ const ROOT_URL = 'https://jjjwelch420.github.io/Launcher/';
       { id: 'LearnToFly', label: 'Learn to Fly' },
       { id: 'Learn2Fly', label: 'Learn to Fly 2' },
       { id: 'LearnToFly3', label: 'Learn to Fly 3' },
+      { id: 'PapasSushiria', label: 'Papa\'s Sushiria' },
+      { id: 'PapasBurgeria', label: 'Papa\'s Burgeria' },
+      { id: 'PapasPizzeria', label: 'Papa\'s Pizzeria' },
+      { id: 'PapasHotdogeria', label: 'Papa\'s Hotdogeria' },
       { id: 'Red-vs-Blue', label: 'Red vs Blue' },
       { id: 'JackSmith', label: 'JackSmith' },
       { id: 'BasketballLegends', label: 'Basketball Legends' } 
