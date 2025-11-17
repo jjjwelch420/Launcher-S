@@ -1,0 +1,49 @@
+body {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .game-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #2b2b2b;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .fancy-button {
+      width: 180px;
+      height: 50px;
+      border: 2px solid #8a85ff;
+      border-radius: 6px;
+      background-color: #1e1e1e;
+      color: #8a85ff;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .fancy-button:hover {
+      background-color: #8a85ff;
+      color: #1e1e1e;
+      transform: translateY(-2px);
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.3);
+      accent-color: #8a85ff;
+      cursor: pointer;
+    }
