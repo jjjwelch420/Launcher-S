@@ -1,25 +1,6 @@
 function createLauncherUI() {
   const container = document.getElementById('launcher');
-
-  // Create search bar dynamically
-  const searchBar = document.createElement("input");
-  searchBar.type = "text";
-  searchBar.id = "searchBar";
-  searchBar.placeholder = "Search games...";
-  searchBar.classList.add("search-bar");
-  container.parentNode.insertBefore(searchBar, container);
-
-  // Filtering logic
-  searchBar.addEventListener("input", function(e) {
-    const query = e.target.value.toLowerCase();
-    const wrappers = document.querySelectorAll("#launcher .game-wrapper");
-    wrappers.forEach(wrapper => {
-      const text = wrapper.textContent.toLowerCase();
-      wrapper.style.display = text.includes(query) ? "" : "none";
-    });
-  });
-
-  // Build game entries
+   // Build game entries
   games.forEach(game => {
     const wrapper = document.createElement('div');
     wrapper.className = 'game-wrapper';

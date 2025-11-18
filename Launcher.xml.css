@@ -50,20 +50,20 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 .search-bar {
-  width: calc(100% - 20px);   /* full width minus padding */
+  width: calc(100% - 20px);   /* full width minus body padding */
   height: 37.5px;               /* half of button height */
   border: 2px solid #8a85ff;
   border-radius: 6px;
   background-color: #1e1e1e;
-  color: #8a85ff; 
+  color: #8a85ff;
   font-size: 14px;
   font-family: 'Roboto Serif', serif;
-  font-weight: 800; /* ExtraBold */
+  font-weight: 800;
   letter-spacing: 1px;
   padding: 0 8px;
   margin-bottom: 15px;
   transition: all 0.3s ease;
-  box-sizing: border-box;     /* ensures padding doesn’t break width */
+  box-sizing: border-box;
 }
 
 .search-bar:focus {
@@ -71,4 +71,5 @@ input[type="checkbox"] {
   background-color: #2b2b2b;
   color: #f0f0f0;
 }
+
 
