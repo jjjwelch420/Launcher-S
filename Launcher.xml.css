@@ -49,3 +49,23 @@ input[type="checkbox"] {
   accent-color: #8a85ff;
   cursor: pointer;
 }
+.search-bar {
+  width: 180px;              /* same width as buttons */
+  height: 25px;              /* half of 50px button height */
+  border: 2px solid #8a85ff;
+  border-radius: 6px;
+  background-color: #1e1e1e;
+  color: #8a85ff;
+  font-size: 14px;
+  font-family: 'Roboto Serif', serif;
+  font-weight: 800; /* ExtraBold */
+  letter-spacing: 1px;
+  padding: 0 8px;
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  outline: none;
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+}
