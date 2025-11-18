@@ -51,7 +51,7 @@ input[type="checkbox"] {
 }
 .search-bar {
   width: calc(100% - 20px);   /* full width minus padding */
-  height: 25px;               /* half of button height */
+  height: 37.5px;               /* half of button height */
   border: 2px solid #8a85ff;
   border-radius: 6px;
   background-color: #1e1e1e;
