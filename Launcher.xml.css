@@ -50,8 +50,8 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 .search-bar {
-  width: 180px;              /* same width as buttons */
-  height: 25px;              /* half of 50px button height */
+  width: calc(100% - 20px);   /* full width minus padding */
+  height: 25px;               /* half of button height */
   border: 2px solid #8a85ff;
   border-radius: 6px;
   background-color: #1e1e1e;
@@ -61,7 +61,9 @@ input[type="checkbox"] {
   font-weight: 800; /* ExtraBold */
   letter-spacing: 1px;
   padding: 0 8px;
+  margin-bottom: 15px;
   transition: all 0.3s ease;
+  box-sizing: border-box;     /* ensures padding doesn’t break width */
 }
 
 .search-bar:focus {
@@ -69,3 +71,4 @@ input[type="checkbox"] {
   background-color: #2b2b2b;
   color: #f0f0f0;
 }
+

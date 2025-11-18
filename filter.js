@@ -12,10 +12,10 @@ launcher.parentNode.insertBefore(searchBar, launcher);
 // Filtering logic
 searchBar.addEventListener("input", function(e) {
   const query = e.target.value.toLowerCase();
-  const buttons = document.querySelectorAll("#launcher .fancy-button"); // adjust if needed
+  const wrappers = document.querySelectorAll("#launcher .game-wrapper"); // hide wrapper
 
-  buttons.forEach(btn => {
-    const text = btn.textContent.toLowerCase();
-    btn.style.display = text.includes(query) ? "" : "none";
+  wrappers.forEach(wrapper => {
+    const text = wrapper.textContent.toLowerCase();
+    wrapper.style.display = text.includes(query) ? "" : "none";
   });
 });
