@@ -1,24 +1,32 @@
 function createLauncherUI() {
-      const container = document.getElementById('launcher');
-      games.forEach(game => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'game-wrapper';
+  const container = document.getElementById('launcher');
+  games.forEach(game => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'game-wrapper';
 
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = `check-${game.id}`;
-        checkbox.onchange = () => toggleGameIframe(game.id, checkbox.checked);
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `check-${game.id}`;
+    checkbox.onchange = () => toggleGameIframe(game.id, checkbox.checked);
 
-        const button = document.createElement('button');
-        button.className = 'fancy-button';
-        button.textContent = game.label;
-        button.onclick = () => fullscreenGame(game.id);
+    const button = document.createElement('button');
+    button.className = 'fancy-button';
+    button.textContent = game.label;
+    button.onclick = () => {
+      // Auto-check the box if not already checked
+      if (!checkbox.checked) {
+        checkbox.checked = true;
+        toggleGameIframe(game.id, true);
+      }
+      fullscreenGame(game.id);
+    };
 
-        wrapper.appendChild(checkbox);
-        wrapper.appendChild(button);
-        container.appendChild(wrapper);
-      });
-    }
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(button);
+    container.appendChild(wrapper);
+  });
+}
+
 
     async function fetchHTMLFromXML(url) {
       try {
