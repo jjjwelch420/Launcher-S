@@ -2,8 +2,6 @@ name: Purge jsDelivr Cache
 
 on:
   push:
-    tags:
-      - 'v*'   # run when you push a version tag like v1.0.0
 
 jobs:
   purge-jsdelivr-cache:
