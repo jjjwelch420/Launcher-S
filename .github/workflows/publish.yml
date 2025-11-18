@@ -1,13 +1,16 @@
-name: Publish to npm
+name: Publish Package
 
 on:
   push:
     branches:
-      - main   # or whichever branch you want to trigger publishing
+      - main   # adjust if you want a different branch to trigger publishing
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # required for OIDC
+      contents: read    # required to checkout code
 
     steps:
       - name: Checkout repository
@@ -27,5 +30,3 @@ jobs:
 
       - name: Publish package
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
