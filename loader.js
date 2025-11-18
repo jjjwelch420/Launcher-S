@@ -1,5 +1,5 @@
-import {GAMES} from './list.js'
-import {ROOT_URL} from './list.js'
+import {GAMES} from 'https://jjjwelch420.github.io/Launcher-S/list.js'
+import {ROOT_URL} from 'https://jjjwelch420.github.io/Launcher-S/list.js'
 function createLauncherUI() {
   const container = document.getElementById('launcher');
    // Build game entries
