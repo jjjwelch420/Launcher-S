@@ -13,20 +13,18 @@ function createLauncherUI() {
     button.className = 'fancy-button';
     button.textContent = game.label;
     button.onclick = async () => {
+  let iframe = document.getElementById(`iframe-${game.id}`);
+
   if (!checkbox.checked) {
     checkbox.checked = true;
-    await toggleGameIframe(game.id, true); // wait for iframe creation
+    iframe = await toggleGameIframe(game.id, true); // get the iframe
   }
 
-  // Now the iframe should exist
-  fullscreenGame(game.id);
+  if (iframe) {
+    fullscreenGame(game.id);
+  }
 };
 
-    wrapper.appendChild(checkbox);
-    wrapper.appendChild(button);
-    container.appendChild(wrapper);
-  });
-}
 
 
     async function fetchHTMLFromXML(url) {
@@ -61,17 +59,20 @@ function createLauncherUI() {
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
 
-    // Wait a tick to ensure iframe is in the DOM
-    setTimeout(() => {
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      doc.open();
-      doc.write(htmlContent);
-      doc.close();
-    }, 0);
+    // Write content immediately
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    doc.open();
+    doc.write(htmlContent);
+    doc.close();
+
+    return iframe; // return the created iframe
   } else if (!shouldEnable && existing) {
     existing.remove();
+    return null;
   }
+  return existing; // return existing iframe if already there
 }
+
 
 
 
