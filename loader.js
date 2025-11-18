@@ -3,7 +3,7 @@ import {ROOT_URL} from './list.js'
 function createLauncherUI() {
   const container = document.getElementById('launcher');
    // Build game entries
-  games.forEach(game => {
+  GAMES.forEach(game => {
     const wrapper = document.createElement('div');
     wrapper.className = 'game-wrapper';
 
