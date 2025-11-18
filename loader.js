@@ -12,14 +12,15 @@ function createLauncherUI() {
     const button = document.createElement('button');
     button.className = 'fancy-button';
     button.textContent = game.label;
-    button.onclick = () => {
-      // Auto-check the box if not already checked
-      if (!checkbox.checked) {
-        checkbox.checked = true;
-        toggleGameIframe(game.id, true);
-      }
-      fullscreenGame(game.id);
-    };
+    button.onclick = async () => {
+  if (!checkbox.checked) {
+    checkbox.checked = true;
+    await toggleGameIframe(game.id, true); // wait for iframe creation
+  }
+
+  // Now the iframe should exist
+  fullscreenGame(game.id);
+};
 
     wrapper.appendChild(checkbox);
     wrapper.appendChild(button);
