@@ -1,5 +1,25 @@
 function createLauncherUI() {
   const container = document.getElementById('launcher');
+
+  // Create search bar dynamically
+  const searchBar = document.createElement("input");
+  searchBar.type = "text";
+  searchBar.id = "searchBar";
+  searchBar.placeholder = "Search games...";
+  searchBar.classList.add("search-bar");
+  container.parentNode.insertBefore(searchBar, container);
+
+  // Filtering logic
+  searchBar.addEventListener("input", function(e) {
+    const query = e.target.value.toLowerCase();
+    const wrappers = document.querySelectorAll("#launcher .game-wrapper");
+    wrappers.forEach(wrapper => {
+      const text = wrapper.textContent.toLowerCase();
+      wrapper.style.display = text.includes(query) ? "" : "none";
+    });
+  });
+
+  // Build game entries
   games.forEach(game => {
     const wrapper = document.createElement('div');
     wrapper.className = 'game-wrapper';
@@ -13,35 +33,37 @@ function createLauncherUI() {
     button.className = 'fancy-button';
     button.textContent = game.label;
     button.onclick = async () => {
-  let iframe = document.getElementById(`iframe-${game.id}`);
-
-  if (!checkbox.checked) {
-    checkbox.checked = true;
-    iframe = await toggleGameIframe(game.id, true); // get the iframe
-  }
-
-  if (iframe) {
-    fullscreenGame(game.id);
-  }
-};
-
-
-
-    async function fetchHTMLFromXML(url) {
-      try {
-        const response = await fetch(url);
-        const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
-        const contentNode = xmlDoc.querySelector('Content');
-        return contentNode?.textContent || '<p>Error loading content</p>';
-      } catch (error) {
-        console.error('Failed to fetch XML:', error);
-        return '<p>Failed to load XML content</p>';
+      let iframe = document.getElementById(`iframe-${game.id}`);
+      if (!checkbox.checked) {
+        checkbox.checked = true;
+        iframe = await toggleGameIframe(game.id, true);
       }
-    }
+      if (iframe) {
+        fullscreenGame(game.id);
+      }
+    };
 
-    async function toggleGameIframe(gameId, shouldEnable) {
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(button);
+    container.appendChild(wrapper);
+  });
+}
+
+async function fetchHTMLFromXML(url) {
+  try {
+    const response = await fetch(url);
+    const xmlText = await response.text();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+    const contentNode = xmlDoc.querySelector('Content');
+    return contentNode?.textContent || '<p>Error loading content</p>';
+  } catch (error) {
+    console.error('Failed to fetch XML:', error);
+    return '<p>Failed to load XML content</p>';
+  }
+}
+
+async function toggleGameIframe(gameId, shouldEnable) {
   const existing = document.getElementById(`iframe-${gameId}`);
   if (shouldEnable && !existing) {
     const fullURL = ROOT_URL + 'Ports/' + gameId + '.xml';
@@ -59,46 +81,42 @@ function createLauncherUI() {
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
 
-    // Write content immediately
     const doc = iframe.contentDocument || iframe.contentWindow.document;
     doc.open();
     doc.write(htmlContent);
     doc.close();
 
-    return iframe; // return the created iframe
+    return iframe;
   } else if (!shouldEnable && existing) {
     existing.remove();
     return null;
   }
-  return existing; // return existing iframe if already there
+  return existing;
 }
 
+function fullscreenGame(gameId) {
+  const iframe = document.getElementById(`iframe-${gameId}`);
+  if (!iframe) {
+    alert('Enable the checkbox first to load this game.');
+    return;
+  }
 
+  iframe.style.display = 'block';
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.webkitRequestFullscreen) {
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.mozRequestFullScreen) {
+    iframe.mozRequestFullScreen();
+  } else if (iframe.msRequestFullscreen) {
+    iframe.msRequestFullscreen();
+  }
 
-
-
-    function fullscreenGame(gameId) {
-      const iframe = document.getElementById(`iframe-${gameId}`);
-      if (!iframe) {
-        alert('Enable the checkbox first to load this game.');
-        return;
-      }
-
-      iframe.style.display = 'block';
-      if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-      } else if (iframe.webkitRequestFullscreen) {
-        iframe.webkitRequestFullscreen();
-      } else if (iframe.mozRequestFullScreen) {
-        iframe.mozRequestFullScreen();
-      } else if (iframe.msRequestFullscreen) {
-        iframe.msRequestFullscreen();
-      }
-
-      document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
-          iframe.style.display = 'none';
-        }
-      });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      iframe.style.display = 'none';
     }
-    createLauncherUI();
+  });
+}
+
+createLauncherUI();
