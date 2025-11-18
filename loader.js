@@ -1,4 +1,4 @@
-import {games} from './list.js'
+import {GAMES} from './list.js'
 import {ROOT_URL} from './list.js'
 function createLauncherUI() {
   const container = document.getElementById('launcher');
