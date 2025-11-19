@@ -38,7 +38,7 @@
 
   <script> 
     window.RufflePlayer = window.RufflePlayer || {};
-    window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("DOMContentLoaded", () => { 
       const ruffle = window.RufflePlayer.newest();
       const container = document.getElementById("flash-container"); 
       const player = ruffle.createPlayer();
