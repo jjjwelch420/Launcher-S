@@ -1,4 +1,4 @@
-import { GAMES, ROOT_URL } from 'https://jjjwelch420.github.io/Launcher-S/list.js';
+import { GAMES, ROOT_URL } from 'https://cdn.statically.io/gh/jjjwelch420/Launcher-S@main/list.js';
 
     // Expose to global scope if needed by non-module scripts
     window.GAMES = GAMES;
