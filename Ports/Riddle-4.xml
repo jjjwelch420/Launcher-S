@@ -43,7 +43,7 @@
       const container = document.getElementById("flash-container");
       const player = ruffle.createPlayer();
       container.appendChild(player);
-      player.load("https://jjjwelch420.github.io/Launcher-S/Ports/SWF/Riddle/Riddle-4.swf");
+      player.load("https://cdn.statically.io/gh/jjjwelch420/Launcher-S@main/Ports/SWF/Riddle/Riddle-4.swf");
     });
   </script>
 </body>

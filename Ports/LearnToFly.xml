@@ -36,14 +36,14 @@
 <body>
   <div id="flash-container"></div>
 
-  <script> 
+  <script type = "module"> 
     window.RufflePlayer = window.RufflePlayer || {};
     window.addEventListener("DOMContentLoaded", () => { 
       const ruffle = window.RufflePlayer.newest();
       const container = document.getElementById("flash-container"); 
       const player = ruffle.createPlayer();
       container.appendChild(player);
-      player.load(${window.ROOT_URL} + "Ports/SWF/LearnToFly/LearnToFly.swf");
+      player.load("https://cdn.statically.io/gh/jjjwelch420/Launcher-S@main/Ports/SWF/LearnToFly/LearnToFly.swf");
     });
   </script>
 </body>
