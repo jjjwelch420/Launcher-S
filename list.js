@@ -1,4 +1,4 @@
-export const ROOT_URL = 'https://cdn.statically.io/gh/jjjwelch420/Launcher-S/1.2.0/';
+export const ROOT_URL = 'https://cdn.statically.io/gh/jjjwelch420/Launcher-S/1.3.0/';
 export const GAMES = [
   { id: 'Racing', label: 'Racing' }, 
   { id: 'StickWar', label: 'Stick War' },
