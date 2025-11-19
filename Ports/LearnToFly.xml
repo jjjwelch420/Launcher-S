@@ -40,7 +40,7 @@
     window.RufflePlayer = window.RufflePlayer || {};
     window.addEventListener("DOMContentLoaded", () => {
       const ruffle = window.RufflePlayer.newest();
-      const container = document.getElementById("flash-container");
+      const container = document.getElementById("flash-container"); 
       const player = ruffle.createPlayer();
       container.appendChild(player);
       player.load("${window.ROOT_URL}Ports/SWF/LearnToFly/LearnToFly.swf");
